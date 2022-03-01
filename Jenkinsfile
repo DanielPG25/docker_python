@@ -36,7 +36,7 @@ pipeline {
             stages {
                 stage('CloneAnfitrion') {
                     steps {
-                        git branch:'master',url:'https://github.com/DanielPG25/django_tutorial.git'
+                        git branch:'master',url:'https://github.com/DanielPG25/docker_python.git'
                     }
                 }
                 stage('BuildImage') {
