@@ -2,7 +2,7 @@ FROM python:3
 WORKDIR /usr/src/app
 MAINTAINER Daniel Parrales García "daniparrales16@gmail.com"
 RUN pip install django mysqlclient 
-ADD docker_tutorial/ /usr/src/app
+ADD django_tutorial/ /usr/src/app
 ADD django_polls.sh /opt
 RUN mkdir static && chmod +x /opt/django_polls.sh
 ENV ALLOWED_HOSTS=*
