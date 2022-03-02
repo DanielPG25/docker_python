@@ -36,7 +36,7 @@ pipeline {
             stages {
                 stage('CloneAnfitrion') {
                     steps {
-                        git branch:'master',url:'https://github.com/DanielPG25/docker_python.git'
+                        git branch:'main',url:'https://github.com/DanielPG25/docker_python.git'
                     }
                 }
                 stage('BuildImage') {
@@ -60,6 +60,14 @@ pipeline {
                         sh "docker rmi $IMAGEN:latest"
                     }
                 }
+                stage ('SSH') {
+    steps{
+        sshagent(credentials : ['SSH_ROOT']) {
+            sh 'ssh -o StrictHostKeyChecking=no root@blackstar.sysadblog.com wget https://raw.githubusercontent.com/DanielPG25/docker_python/main/docker-compose.yaml -O docker-compose.yaml'
+            sh 'ssh -o StrictHostKeyChecking=no root@blackstar.sysadblog.com docker-compose up -d --force-recreate'
+        }
+    }
+}
             }
         }           
     }
